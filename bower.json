@@ -1,0 +1,18 @@
+{
+  "name": "mk-carousel",
+  "version": "0.9.0",
+  "authors": [
+    "Marcin Krawiec <krawiecm@ersoft.pl>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "main" : ["carousel.js"],
+  "dependencies": {
+    "jquery": ">=1.6",
+    "jquery.hammer.js": "~2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/marcinkrawiec/carousel.git"
+  }  
+}

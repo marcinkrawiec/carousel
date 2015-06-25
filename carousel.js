@@ -141,12 +141,12 @@ https://github.com/marcinkrawiec/carousel
 			this.calculateDimensions();
 			this.bindEvents();
 			this.assignNavCheck();
-			$(document).on('viewportSize.'+that.options.carouselNamespace, function() {
+			$(window).on('resize.'+that.options.carouselNamespace, $.throttle( 2500, function() {
 				 setTimeout( function() {
 				// that.debug('load resize orientationchange');
 					that.calculateDimensions();
 				}, 200);
-			});
+			}));
 		};
 
 		this.bindEvents = function() {

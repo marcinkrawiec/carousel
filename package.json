@@ -1,0 +1,37 @@
+{
+  "name": "carousel",
+  "version": "0.9.1",
+  "author": "Marcin Krawiec <krawiecm@ersoft.pl>",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/marcinkrawiec/carousel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcinkrawiec/carousel/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "scripts": {
+    "build": "bower install && gulp"
+  },
+  "engines": {
+    "node": ">= 0.12.0",
+    "npm": ">=2.1.5"
+  },
+  "paths": {
+    "bower_src": "bower_components/"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-bower-concat": "0.5.0",
+    "grunt-contrib-jshint": "0.3.0",
+    "grunt-contrib-uglify": "~0.9.1",
+    "grunt-wiredep": "^2.0.0",
+    "grunt-sass": "~1.0.0",
+    "load-grunt-tasks": "~0.4.0"
+  }
+}

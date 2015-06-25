@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Carousel example</title>
+	<!-- bower:js -->
+	<script src="bower_components/modernizr/modernizr.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/hammerjs/hammer.js"></script>
+	<script src="bower_components/jquery.hammer.js/jquery.hammer.js"></script>
+	<script src="bower_components/throttle-debounce/dist/throttle-debounce.js"></script>
+	<!-- endbower -->
+	<script src="carousel.js"></script>
+	<link rel="stylesheet" href="example.css">
+</head>
+<body>
+	<section class="js-carousel--home" data-carousel-autointerval="6">
+		<div class="carousel">
+			<div class="carousel__container js-carousel-container">
+				<div class="carousel__content"><!--
+					 --><div class="carousel-item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/500x300" /></a>
+					</div><!--
+					 --><div class="carousel-item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/500x300" /></a>
+					</div><!--
+					 --><div class="carousel-item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/500x300" /></a>
+					</div><!--
+					 --><div class="carousel-item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/500x300" /></a>
+					</div><!--
+				--></div>
+			</div>
+		</div>
+		<div class="container container--relative">
+			<button class="carousel-nav__item-left" aria-hidden="true">
+				<i class="icon-carousel-prev"></i> prev
+			</button>
+			<button class="carousel-nav__item-right"  aria-hidden="true">
+				next <i class="icon-carousel-next"></i>
+			</button>
+			<div class="carousel__nav">
+				<ul class="nav">
+					<li><button class="btn-reset carousel__nav-item"><i class="icon-carousel-nav carousel__nav-icon--off">[ ]</i><i class="icon-carousel-nav-active carousel__nav-icon--on">[o]</i></button></li>
+					<li><button class="btn-reset carousel__nav-item"><i class="icon-carousel-nav carousel__nav-icon--off">[ ]</i><i class="icon-carousel-nav-active carousel__nav-icon--on">[o]</i></button></li>
+					<li><button class="btn-reset carousel__nav-item"><i class="icon-carousel-nav carousel__nav-icon--off">[ ]</i><i class="icon-carousel-nav-active carousel__nav-icon--on">[o]</i></button></li>
+					<li><button class="btn-reset carousel__nav-item"><i class="icon-carousel-nav carousel__nav-icon--off">[ ]</i><i class="icon-carousel-nav-active carousel__nav-icon--on">[o]</i></button></li>
+				</ul>
+			</div>
+			<div class="carousel__nav">
+				<ul  class="nav">
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<script>
+	$('.js-carousel--home').mkCarousel({
+		'moveToCenter': false,
+		'calculateImgDimensions' : false,
+		'calculateItemDimensions' : true,
+		'calculateContainerOffset': false,
+		'carouselNamespace' : 'carousel-home',
+		'allowLoop': true,
+	});
+	</script>	
+</body>

@@ -64,7 +64,7 @@ https://github.com/marcinkrawiec/carousel
 
 		this.options = $.extend({}, defaults, options, $container.data());
 
-		console.log(this.options.carouselNamespace);
+		// console.log(this.options.carouselNamespace);
 
 		this.$containerInner = $container.find(this.options.selectorContainer);
 		this.$content = $container.find(this.options.selectorContent);
@@ -114,6 +114,8 @@ https://github.com/marcinkrawiec/carousel
 		this.panNavLastOffset = 0;
 		this.panNavVelocity = 0;
 
+		this.initialized = false;
+
 		this.autoslideTimeout = parseInt(this.$container.data('carousel-autointerval') || 0);
 		// console.log(this.autoslideTimeout);
 		this.autoslideState = -1;
@@ -137,6 +139,7 @@ https://github.com/marcinkrawiec/carousel
 
 
 		this.init = function() {
+			this.initialized = true;
 			that.debug('init');
 			this.calculateDimensions();
 			this.bindEvents();
@@ -144,7 +147,9 @@ https://github.com/marcinkrawiec/carousel
 			$(window).on('resize.'+that.options.carouselNamespace, $.throttle( 2500, function() {
 				 setTimeout( function() {
 				// that.debug('load resize orientationchange');
-					that.calculateDimensions();
+					if(that.initialized) {
+						that.calculateDimensions();
+					}
 				}, 200);
 			}));
 		};
@@ -552,6 +557,7 @@ https://github.com/marcinkrawiec/carousel
 
 		this.destroy = function() {
 			var that = this;
+			that.initialized = false;
 			// console.log('Destroy!');
 			that.unbindEvents();
 			that.decalculateDimensions();
@@ -582,6 +588,7 @@ https://github.com/marcinkrawiec/carousel
 
 			that.$content.off('.'+that.options.carouselNamespace);
 			$(document).off('.'+that.options.carouselNamespace);
+			$(window).off('.'+that.options.carouselNamespace);
 		};
 
 		this.calculateImgDimensions = function() {
@@ -1144,7 +1151,7 @@ https://github.com/marcinkrawiec/carousel
 		return this.each(function () {
 			var $this   = $(this);
 			var featuredSliderInstance    = $this.data('mk.mkCarousel');
-			console.info(featuredSliderInstance);
+			// console.info(featuredSliderInstance);
 			var options = $.extend({}, Carousel.Defaults, $this.data(), typeof option == 'object' && option);
 
 			if (!featuredSliderInstance) {

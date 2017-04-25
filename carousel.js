@@ -160,26 +160,22 @@ https://github.com/marcinkrawiec/carousel
 
 		this.generateNavItems = function() {
 			if (that.options.generateNavItems) {
-				console.log('generating nav items!');
+
 				that.$navItemsContainer.each( function() {
 					var $navItems = $(this).find(that.options.selectorNavItems);
 
 					if(that.$items.size() != $navItems.size()) {
 
 						var nbSize = $navItems.size();
-						console.log('nbSize '+nbSize);
-						console.log('that.$items.size() '+that.$items.size());
 
 						if(that.$items.size() > nbSize) {
 							for(var i = that.$items.size() - nbSize; i > 0; i--) {
 								var $clone = $navItems.eq(nbSize - 1).clone();
 								$navItems.eq(nbSize - 1).after($clone);
-								console.log('inserting item');
 							}
 						} else {
 							for(var i = nbSize; i > that.$items.size(); i--) {
 								$navItems.eq(i-1).remove();
-								console.log('removing item');
 							}
 						}
 					}

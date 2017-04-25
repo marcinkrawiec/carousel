@@ -163,10 +163,15 @@ https://github.com/marcinkrawiec/carousel
 
 				that.$navItemsContainer.each( function() {
 					var $navItems = $(this).find(that.options.selectorNavItems);
+					var nbSize = $navItems.size();
+
+					// there are no nav items here so we cannot clone anything
+					if (nbSize < 1) {
+						return true;
+					}
 
 					if(that.$items.size() != $navItems.size()) {
 
-						var nbSize = $navItems.size();
 
 						if(that.$items.size() > nbSize) {
 							for(var i = that.$items.size() - nbSize; i > 0; i--) {

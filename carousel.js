@@ -48,6 +48,7 @@ https://github.com/marcinkrawiec/carousel
 			'calculateItemDimensions' : false,
 			'calculateContainerOffset': false,
 			'moveToCenter': false,
+			'generateNavItems': false,
 			'minHeight': 0,
 			'getOtherElementsDimensions': function(){ return 0; },
 			'slideChanged': null,
@@ -56,7 +57,9 @@ https://github.com/marcinkrawiec/carousel
 			'selectorItem': '.carousel-item',
 			'selectorWidthItem': '.js-carousel-item-width',
 			'selectorWidthContainer': '.js-carousel-container',
-			'selectorWidthSpecialContainer': ''
+			'selectorWidthSpecialContainer': '',
+			'selectorNavItemsContainer': '.carousel__nav',
+			'selectorNavItems': '.carousel__nav-item'
 		};
 		
 		var $container = $(container);
@@ -80,8 +83,8 @@ https://github.com/marcinkrawiec/carousel
 
 		this.$navContainer = $container.find('.carousel-nav__progress');
 		this.$nav = $container.find('.carousel-nav__indicator');
-		this.$navItemsContainer = $container.find('.carousel__nav');
-		this.$navItems = $container.find('.carousel__nav-item');
+		this.$navItemsContainer = $container.find(this.options.selectorNavItemsContainer);
+		this.$navItems = $container.find(this.options.selectorNavItems);
 		this.$navNext = $container.find('.carousel-nav__item-right');
 		this.$navPrev = $container.find('.carousel-nav__item-left');
 
@@ -141,6 +144,7 @@ https://github.com/marcinkrawiec/carousel
 		this.init = function() {
 			this.initialized = true;
 			that.debug('init');
+			this.generateNavItems();
 			this.calculateDimensions();
 			this.bindEvents();
 			this.assignNavCheck();
@@ -153,6 +157,36 @@ https://github.com/marcinkrawiec/carousel
 				}, 200);
 			}));
 		};
+
+		this.generateNavItems = function() {
+			if (that.options.generateNavItems) {
+				console.log('generating nav items!');
+				that.$navItemsContainer.each( function() {
+					var $navItems = $(this).find(that.options.selectorNavItems);
+
+					if(that.$items.size() != $navItems.size()) {
+
+						var nbSize = $navItems.size();
+						console.log('nbSize '+nbSize);
+						console.log('that.$items.size() '+that.$items.size());
+
+						if(that.$items.size() > nbSize) {
+							for(var i = that.$items.size() - nbSize; i > 0; i--) {
+								var $clone = $navItems.eq(nbSize - 1).clone();
+								$navItems.eq(nbSize - 1).after($clone);
+								console.log('inserting item');
+							}
+						} else {
+							for(var i = nbSize; i > that.$items.size(); i--) {
+								$navItems.eq(i-1).remove();
+								console.log('removing item');
+							}
+						}
+					}
+				});
+				that.$navItems = that.$container.find(that.options.selectorNavItems);
+			}
+		}
 
 		this.bindEvents = function() {
 			var hammerOptions = {

@@ -213,6 +213,10 @@
 		'carouselNamespace' : 'carousel-home',
 		'generateNavItems': true,
 		'allowLoop': true,
+		'onPositionChanged': function(ev) {
+			console.log('onPositionChanged');
+			console.log(ev.carouselCurrentPosition);
+		}
 	});
 
 	$('.js-carousel--home-2').mkCarousel({

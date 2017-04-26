@@ -59,7 +59,8 @@ https://github.com/marcinkrawiec/carousel
             'selectorWidthContainer': '.js-carousel-container',
             'selectorWidthSpecialContainer': '',
             'selectorNavItemsContainer': '.carousel-nav',
-            'selectorNavItems': '.carousel-nav__item'
+            'selectorNavItems': '.carousel-nav__item',
+            'onPositionChanged': false
         };
         
         var $container = $(container);
@@ -190,6 +191,12 @@ https://github.com/marcinkrawiec/carousel
             }
         }
 
+        this.triggerEvent = function(eventName) {
+            var ev = $.Event(eventName);
+            ev.carouselCurrentPosition = this.currentPosition;
+            this.$container.trigger(ev);            
+        };
+
         this.bindEvents = function() {
             var hammerOptions = {
                 // panLockToAxis: true,
@@ -198,6 +205,11 @@ https://github.com/marcinkrawiec/carousel
                 touchAction: 'pan-y'
             };
 
+            if (that.options.onPositionChanged !== false) {                
+                that.$container.on('carouselPositionChanged', function(ev) {
+                    that.options.onPositionChanged(ev);
+                });
+            }
 
             that.$navContainer.hammer({}).on('click.'+that.options.carouselNamespace, function(ev) {
                 // console.log(ev);
@@ -1178,6 +1190,8 @@ https://github.com/marcinkrawiec/carousel
                     }
                 }
             }
+
+            this.triggerEvent('carouselPositionChanged');
 
             return true;
         };

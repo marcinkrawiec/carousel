@@ -25,22 +25,22 @@ html, body {
 		}
 
 .carousel-nav--bullet {
-	.carousel__nav-item {
+	.carousel-nav__item {
 		padding: 5px 10px;
 	}
 }
-.carousel__nav-item {
-	.carousel__nav-icon--off {
+.carousel-nav__item {
+	.carousel-nav__icon--off {
 		display: inline-block;
 	}
-	.carousel__nav-icon--on {
+	.carousel-nav__icon--on {
 		display: none;
 	}
 	&.is-active {
-		.carousel__nav-icon--off {
+		.carousel-nav__icon--off {
 			display: none;
 		}
-		.carousel__nav-icon--on {
+		.carousel-nav__icon--on {
 			display: inline-block;
 		}
 	}
@@ -56,7 +56,7 @@ html, body {
 	float: left;
 }
 
-.nav {
+.carousel-nav {
 	display: block;
 	list-style: none;
 	margin: 0;

@@ -19,19 +19,19 @@ html, body {
   padding: 0;
   list-style-type: none; }
 
-.carousel-nav--bullet .carousel__nav-item {
+.carousel-nav--bullet .carousel-nav__item {
   padding: 5px 10px; }
 
-.carousel__nav-item .carousel__nav-icon--off {
+.carousel-nav__item .carousel-nav__icon--off {
   display: inline-block; }
 
-.carousel__nav-item .carousel__nav-icon--on {
+.carousel-nav__item .carousel-nav__icon--on {
   display: none; }
 
-.carousel__nav-item.is-active .carousel__nav-icon--off {
+.carousel-nav__item.is-active .carousel-nav__icon--off {
   display: none; }
 
-.carousel__nav-item.is-active .carousel__nav-icon--on {
+.carousel-nav__item.is-active .carousel-nav__icon--on {
   display: inline-block; }
 
 .carousel__item-container {
@@ -43,12 +43,12 @@ html, body {
   list-style-type: none;
   float: left; }
 
-.nav {
+.carousel-nav {
   display: block;
   list-style: none;
   margin: 0;
   padding: 0; }
-  .nav li {
+  .carousel-nav li {
     list-style: none;
     padding: 0;
     margin: 0;

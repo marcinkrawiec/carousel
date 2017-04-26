@@ -58,8 +58,8 @@ https://github.com/marcinkrawiec/carousel
             'selectorWidthItem': '.js-carousel-item-width',
             'selectorWidthContainer': '.js-carousel-container',
             'selectorWidthSpecialContainer': '',
-            'selectorNavItemsContainer': '.carousel__nav',
-            'selectorNavItems': '.carousel__nav-item'
+            'selectorNavItemsContainer': '.carousel-nav',
+            'selectorNavItems': '.carousel-nav__item'
         };
         
         var $container = $(container);

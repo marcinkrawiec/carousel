@@ -7,7 +7,7 @@ $.browser = {};
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Marcin Krawiec
+Copyright (c) 2017 Marcin Krawiec
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -128,8 +128,9 @@ https://github.com/marcinkrawiec/carousel
         // this.panReleaseTimeout;
 
         this.debug = function(debugMsg) { 
-            // if(that.options.carouselDebug)
-                // console.log(debugMsg); 
+            if(that.options.carouselDebug) {                
+                console.log(debugMsg); 
+            }
             // console.log('current pos: '+that.currentPosition); 
             // console.log('doRedraw: '+that.doRedraw); 
             // console.log('hasChanged: '+that.hasChanged); 
@@ -361,13 +362,16 @@ https://github.com/marcinkrawiec/carousel
                     that.debug(Math.abs(that.panVelocity));
 
                     if(that.panVelocity !== 0) {
-                        that.debug(that.panVelocity);
                         var moved = Math.abs(ev.gesture.deltaX) / that.itemWidth;
+                        that.debug('moved: ' + moved);
+                        that.debug(that.panVelocity);
                         if(Math.abs(that.panVelocity) < 0.5 && moved < 0.333) {
                             that.moveToCurrent();
-                        } else if(that.panVelocity > 0) {
+                        } else if(that.panVelocity < 0) {
+                            that.debug('velocity < 0 so moveNext');
                             that.moveNext();
                         } else {
+                            that.debug('velocity > 0 so movePrev');
                             that.movePrev();
                         }
 

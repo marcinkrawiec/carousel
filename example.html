@@ -127,6 +127,82 @@
 			</div>
 		</div>
 	</section>
+	<h3>With different containers - it can be used when we need to switch between different carousel layouts for different devices.</h3>
+	<section class="js-carousel--home-3" data-carousel-autointerval="6">
+		<div class="carousel">
+			<div class="carousel__container js-carousel-container">
+				<div class="carousel__content"><!--
+					 --><div class="carousel__item-container js-carousel-special-container"><!--
+						 --><div class="carousel__item-container js-carousel-special-container"><!--
+						 	--><div class="carousel-item js-carousel-item-width">
+	 							<a href="#"><img src="http://placehold.it/500x300" /></a>
+	 						</div><!--
+						 	--><div class="carousel-item js-carousel-item-width">
+	 							<a href="#"><img src="http://placehold.it/500x300" /></a>
+	 						</div><!--
+						 --></div><!--
+						 --><div class="carousel__item-container js-carousel-special-container"><!--
+						 	--><div class="carousel-item js-carousel-item-width">
+	 							<a href="#"><img src="http://placehold.it/500x300" /></a>
+	 						</div><!--
+						 --></div><!--
+					 --></div><!--
+					 --><div class="carousel__item-container js-carousel-special-container"><!--
+						 --><div class="carousel__item-container js-carousel-special-container"><!--
+						 	--><div class="carousel-item js-carousel-item-width">
+	 							<a href="#"><img src="http://placehold.it/500x300" /></a>
+	 						</div><!--
+						 --></div><!--
+						 --><div class="carousel__item-container js-carousel-special-container"><!--
+						 	--><div class="carousel-item js-carousel-item-width">
+	 							<a href="#"><img src="http://placehold.it/500x300" /></a>
+	 						</div><!--
+						 	--><div class="carousel-item js-carousel-item-width">
+	 							<a href="#"><img src="http://placehold.it/500x300" /></a>
+	 						</div><!--
+						 --></div><!--
+					 --></div><!--
+				--></div>
+			</div>
+		</div>
+		<div class="container container--relative">
+			<button class="carousel-nav__item-left" aria-hidden="true">
+				<i class="icon-carousel-prev"></i> prev
+			</button>
+			<button class="carousel-nav__item-right"  aria-hidden="true">
+				next <i class="icon-carousel-next"></i>
+			</button>
+			<div class="carousel__nav">
+				<ul class="nav">
+					<li class="carousel__nav-item"><button class="btn-reset"><i class="icon-carousel-nav carousel__nav-icon--off">[ ]</i><i class="icon-carousel-nav-active carousel__nav-icon--on">[o]</i></button></li>
+				</ul>
+			</div>
+			<div class="carousel__nav">
+				<ul  class="nav">
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+					 <li>
+						<button class="btn-reset  carousel-home__nav carousel__nav-item">
+							<img src="http://placehold.it/100x50" alt="">
+						</button>
+					 </li>
+				</ul>
+			</div>
+		</div>
+	</section>
 
 	<script>
 	$('.js-carousel--home').mkCarousel({
@@ -144,8 +220,19 @@
 		'calculateImgDimensions' : false,
 		'calculateItemDimensions' : true,
 		'calculateContainerOffset': false,
-		'carouselNamespace' : 'carousel-home',
+		'carouselNamespace' : 'carousel-home-2',
 		'generateNavItems': true,
+		'allowLoop': true,
+	});
+
+	$('.js-carousel--home-3').mkCarousel({
+		'moveToCenter': false,
+		'calculateImgDimensions' : false,
+		'calculateItemDimensions' : true,
+		'calculateContainerOffset': false,
+		'carouselNamespace' : 'carousel-home-3',
+		'generateNavItems': true,
+		'selectorWidthSpecialContainer':'js-carousel-special-container',
 		'allowLoop': true,
 	});
 	</script>	

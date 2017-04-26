@@ -34,6 +34,9 @@ html, body {
 .carousel__nav-item.is-active .carousel__nav-icon--on {
   display: inline-block; }
 
+.carousel__item-container {
+  float: left; }
+
 .carousel-item {
   position: relative;
   margin: 0;

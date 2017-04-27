@@ -193,6 +193,7 @@ https://github.com/marcinkrawiec/carousel
 
         this.triggerEvent = function(eventName) {
             var ev = $.Event(eventName);
+            ev.carouselInstance = this;
             ev.carouselCurrentPosition = this.currentPosition;
             this.$container.trigger(ev);            
         };

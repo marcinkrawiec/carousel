@@ -219,6 +219,21 @@
 		}
 	});
 
+	$('.js-carousel--home').mkCarousel('destroy');
+	$('.js-carousel--home').mkCarousel({
+		'moveToCenter': false,
+		'calculateImgDimensions' : false,
+		'calculateItemDimensions' : true,
+		'calculateContainerOffset': false,
+		'carouselNamespace' : 'carousel-home',
+		'generateNavItems': true,
+		'allowLoop': true,
+		'onPositionChanged': function(ev) {
+			console.log('onPositionChanged');
+			console.log(ev.carouselCurrentPosition);
+		}
+	});
+
 	$('.js-carousel--home-2').mkCarousel({
 		'moveToCenter': false,
 		'calculateImgDimensions' : false,
@@ -239,5 +254,6 @@
 		'selectorWidthSpecialContainer':'js-carousel-special-container',
 		'allowLoop': true,
 	});
+
 	</script>	
 </body>

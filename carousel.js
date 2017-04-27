@@ -206,7 +206,7 @@ https://github.com/marcinkrawiec/carousel
             };
 
             if (that.options.onPositionChanged !== false) {                
-                that.$container.on('carouselPositionChanged', function(ev) {
+                that.$container.on('carouselPositionChanged.'+that.options.carouselNamespace, function(ev) {
                     that.options.onPositionChanged(ev);
                 });
             }

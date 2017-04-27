@@ -1193,6 +1193,11 @@ https://github.com/marcinkrawiec/carousel
             return true;
         };
 
+
+        this.getCurrentElement = function() {
+            return this.$items.eq(this.currentPosition);
+        }
+
         this.init();
 
     };

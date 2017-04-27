@@ -1166,25 +1166,22 @@ https://github.com/marcinkrawiec/carousel
             });
 
             this.$navCurrentPage.text( Math.ceil((that.currentPosition + 1) / that.options.snapPositionsBy) );
+
+            // always reset prev/next links in case they were disabled by a different carousel setup (e.g. different screen size)
+            that.$navPrev.removeClass('is-disabled');
+            that.$navNext.removeClass('is-disabled');
             if(!that.options.allowLoop) {
                 if(that.currentPosition === 0) {
                     that.$navPrev.addClass('is-disabled');
-                } else {
-                    that.$navPrev.removeClass('is-disabled');
                 }
 
                 if(that.options.snapPositionsBy > 1) {
                     if(that.currentPosition+that.options.snapPositionsBy >= that.$items.size()) {
                         if(that.currentPosition+1 >= that.$items.size() || that.currentPosition+that.options.snapPositionsBy+1 >= that.$items.size()) {
                             that.$navNext.addClass('is-disabled');
-                        } else {
-                            that.$navNext.removeClass('is-disabled');
                         }
-                    } else {
-                        that.$navNext.removeClass('is-disabled');
                     }
                 } else {
-                    that.$navNext.removeClass('is-disabled');
                     if((that.currentPosition+1) >= that.$items.size()) {
                         that.$navNext.addClass('is-disabled');
                     }

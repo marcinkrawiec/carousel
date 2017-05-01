@@ -52,14 +52,21 @@ https://github.com/marcinkrawiec/carousel
             'minHeight': 0,
             'getOtherElementsDimensions': function(){ return 0; },
             'slideChanged': null,
-            'selectorContainer': '.carousel__container',
-            'selectorContent': '.carousel__content',
-            'selectorItem': '.carousel-item',
             'selectorWidthItem': '.js-carousel-item-width',
             'selectorWidthContainer': '.js-carousel-container',
             'selectorWidthSpecialContainer': '',
-            'selectorNavItemsContainer': '.carousel-nav',
-            'selectorNavItems': '.carousel-nav__item',
+            'selectorPrefix': '.c-carousel',
+            'selectorContainer': '__container',
+            'selectorContent': '__content',
+            'selectorItem': '__item',
+            'selectorNavItemsContainer': '__nav',
+            'selectorNavItems': '__nav-item',
+            'selectorNavItemLeft': '__nav-item-left',
+            'selectorNavItemRight': '__nav-item-right',
+            'selectorNavProgress': '__-nav-progress',
+            'selectorNavIndicator': '__nav-indicator',
+            'selectorNavCurrentPage': '__nav-current-page',
+            'selectorNavTotalPages': '__nav-total-pages',
             'onPositionChanged': false
         };
         
@@ -68,7 +75,21 @@ https://github.com/marcinkrawiec/carousel
 
         this.options = $.extend({}, defaults, options, $container.data());
 
-        // console.log(this.options.carouselNamespace);
+        if (this.options.selectorPrefix) {
+            this.options.selectorContainer = this.options.selectorPrefix + this.options.selectorContainer;
+            this.options.selectorContent = this.options.selectorPrefix + this.options.selectorContent;
+            this.options.selectorItem = this.options.selectorPrefix + this.options.selectorItem;
+            this.options.selectorNavItemsContainer = this.options.selectorPrefix + this.options.selectorNavItemsContainer;
+            this.options.selectorNavItems = this.options.selectorPrefix + this.options.selectorNavItems;
+            this.options.selectorNavItemLeft = this.options.selectorPrefix + this.options.selectorNavItemLeft;
+            this.options.selectorNavItemRight = this.options.selectorPrefix + this.options.selectorNavItemRight;
+            this.options.selectorNavProgress = this.options.selectorPrefix + this.options.selectorNavProgress;
+            this.options.selectorNavIndicator = this.options.selectorPrefix + this.options.selectorNavIndicator;
+            this.options.selectorNavCurrentPage = this.options.selectorPrefix + this.options.selectorNavCurrentPage;
+            this.options.selectorNavTotalPages = this.options.selectorPrefix + this.options.selectorNavTotalPages;
+        };
+
+        console.log(this.options);
 
         this.$containerInner = $container.find(this.options.selectorContainer);
         this.$content = $container.find(this.options.selectorContent);
@@ -82,15 +103,15 @@ https://github.com/marcinkrawiec/carousel
 
         this.$navCheck = $container.find('[data-slide-href-target]');
 
-        this.$navContainer = $container.find('.carousel-nav__progress');
-        this.$nav = $container.find('.carousel-nav__indicator');
+        this.$navContainer = $container.find(this.options.selectorNavProgress);
+        this.$nav = $container.find(this.options.selectorNavIndicator);
         this.$navItemsContainer = $container.find(this.options.selectorNavItemsContainer);
         this.$navItems = $container.find(this.options.selectorNavItems);
-        this.$navNext = $container.find('.carousel-nav__item-right');
-        this.$navPrev = $container.find('.carousel-nav__item-left');
+        this.$navNext = $container.find(this.options.selectorNavItemRight);
+        this.$navPrev = $container.find(this.options.selectorNavItemLeft);
 
-        this.$navCurrentPage = $container.find('.carousel-nav__current-page');
-        this.$navTotalPages = $container.find('.carousel-nav__total-pages');
+        this.$navCurrentPage = $container.find(this.options.selectorNavCurrentPage);
+        this.$navTotalPages = $container.find(this.options.selectorNavTotalPages);
 
         this.$navCurrentPage.text( 1 );
         this.$navTotalPages.text( Math.ceil(this.$items.size() / this.options.snapPositionsBy) );
@@ -689,6 +710,7 @@ https://github.com/marcinkrawiec/carousel
                 return true;
 
             var parentWidth = $items.parents( that.options.selectorWidthContainer ).width();
+            this.debug('parent width:');
             this.debug(parentWidth);
             $items.attr('style','');
 
@@ -704,6 +726,7 @@ https://github.com/marcinkrawiec/carousel
             // console.log('itemwidth:');
             // console.log(that.options.fitNoItemsByContainer);
             // console.log(parentWidth / that.options.fitNoItemsByContainer);
+            this.debug('calculated item width:');
             $items.width(that.itemWidth);
 
 //          console.log('itemsSpecial:');

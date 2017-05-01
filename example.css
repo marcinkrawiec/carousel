@@ -2,54 +2,54 @@ html, body {
   padding: 0;
   margin: 0; }
 
-.carousel {
+.c-carousel {
   position: relative; }
-  .carousel, .carousel * {
+  .c-carousel, .c-carousel * {
     -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
     user-select: none; }
 
-.carousel__container {
+.c-carousel__container {
   overflow: hidden; }
 
-.carousel__content {
+.c-carousel__content {
   position: relative;
   margin: 0;
   padding: 0;
   list-style-type: none; }
 
-.carousel-nav--bullet .carousel-nav__item {
-  padding: 5px 10px; }
-
-.carousel-nav__item .carousel-nav__icon--off {
-  display: inline-block; }
-
-.carousel-nav__item .carousel-nav__icon--on {
-  display: none; }
-
-.carousel-nav__item.is-active .carousel-nav__icon--off {
-  display: none; }
-
-.carousel-nav__item.is-active .carousel-nav__icon--on {
-  display: inline-block; }
-
-.carousel__item-container {
+.c-carousel__item-container {
   float: left; }
 
-.carousel-item {
+.c-carousel__item {
   position: relative;
   margin: 0;
   list-style-type: none;
   float: left; }
 
-.carousel-nav {
+.c-carousel__nav {
   display: block;
   list-style: none;
   margin: 0;
   padding: 0; }
-  .carousel-nav li {
+  .c-carousel__nav li {
     list-style: none;
     padding: 0;
     margin: 0;
     display: inline-block; }
+
+.c-carousel__nav--bullet .c-carousel__nav-item {
+  padding: 5px 10px; }
+
+.c-carousel__nav-item .c-carousel__nav-icon--off {
+  display: inline-block; }
+
+.c-carousel__nav-item .c-carousel__nav-icon--on {
+  display: none; }
+
+.c-carousel__nav-item.is-active .c-carousel__nav-icon--off {
+  display: none; }
+
+.c-carousel__nav-item.is-active .c-carousel__nav-icon--on {
+  display: inline-block; }

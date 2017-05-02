@@ -44,6 +44,7 @@ https://github.com/marcinkrawiec/carousel
             'snapPositions': true,
             'snapPositionsBy': 1,
             'fitNoItemsByContainer': 1,
+            'centerOnLastItem': false,
             'calculateImgDimensions' : true,
             'calculateItemDimensions' : false,
             'calculateContainerOffset': false,
@@ -729,9 +730,9 @@ https://github.com/marcinkrawiec/carousel
             //     $items.width(that.itemWidth);
             //     var innerW = $items.eq(0).width();
             //     var outerW = $items.eq(0).outerWidth();
-                console.log('-----------------------------');
-                console.log(parentWidth);
-                console.log(that.itemWidth);
+                this.debug('-----------------------------');
+                this.debug(parentWidth);
+                this.debug(that.itemWidth);
             //     console.log(outerW);
             //     console.log(innerW);
             //     that.itemWidth += - outerW + innerW;
@@ -822,7 +823,12 @@ https://github.com/marcinkrawiec/carousel
             that.debug(totalImageWidth);
             that.$content.outerWidth(totalImageWidth);
 
-            that.itemsMaxLeftPosition = that.$content.width() - (that.$items.eq(0).width() * that.options.fitNoItemsByContainer);
+            // korekta w else - na razie za blisko podjezdza
+            // if (that.options.centerOnLastItem || that.options.fitNoItemsByContainer < 2) {                
+                that.itemsMaxLeftPosition = that.$content.width() - (that.$items.eq(0).outerWidth() * that.options.fitNoItemsByContainer);
+            // } else {
+                // that.itemsMaxLeftPosition = that.$items.eq(0).outerWidth() * (that.$items.size()  - that.options.fitNoItemsByContainer);
+            // }
             that.debug('calc max left:');
             that.debug(that.itemsMaxLeftPosition);
 
@@ -986,7 +992,11 @@ https://github.com/marcinkrawiec/carousel
                 duration = duration *  start/ diff;
             }
             if(end > that.itemsMaxLeftPosition) {
+                this.debug('end larger than maxleft');
+                this.debug('end: ' + end);
+                this.debug('maxleft: ' + that.itemsMaxLeftPosition);
                 diff = end - start;
+                this.debug('diff: ' + diff);
                 end = that.itemsMaxLeftPosition;
                 var diff2 = end - start;
                 duration = duration * diff2 / diff;
@@ -1117,6 +1127,8 @@ https://github.com/marcinkrawiec/carousel
                     }
                 }
             }
+            this.debug('current position - after extending snap');
+            this.debug(that.currentPosition);
 
             this.navSelect();
             var moveToOffset = that.getPositionOffset(that.currentPosition);

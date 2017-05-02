@@ -8,7 +8,8 @@ html, body {
     -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
-    user-select: none; }
+    user-select: none;
+    box-sizing: border-box; }
 
 .c-carousel__container {
   overflow: hidden; }

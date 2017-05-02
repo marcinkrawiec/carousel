@@ -10,6 +10,8 @@ html, body {
 		-ms-user-select: none;
 		-moz-user-select: none;		
 		user-select: none;
+
+		box-sizing: border-box;
 	}
 }
    
@@ -53,7 +55,7 @@ html, body {
 			padding: 5px 10px;
 		}
 	}
-	
+
 		.c-carousel__nav-item {
 			.c-carousel__nav-icon--off {
 				display: inline-block;

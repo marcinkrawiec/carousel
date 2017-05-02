@@ -209,16 +209,16 @@
 		<div class="c-carousel">
 			<div class="c-carousel__container js-carousel-container">
 				<div class="c-carousel__content"><!--
-					 --><div class="c-carousel__item js-carousel-item-width">
+					 --><div class="c-carousel__item c-carousel__item--demo-padding js-carousel-item-width">
 						<a href="#"><img src="http://placehold.it/200x300" /></a>
 					</div><!--
-					 --><div class="c-carousel__item js-carousel-item-width">
+					 --><div class="c-carousel__item c-carousel__item--demo-padding js-carousel-item-width">
 						<a href="#"><img src="http://placehold.it/200x300" /></a>
 					</div><!--
-					 --><div class="c-carousel__item js-carousel-item-width">
+					 --><div class="c-carousel__item c-carousel__item--demo-padding js-carousel-item-width">
 						<a href="#"><img src="http://placehold.it/200x300" /></a>
 					</div><!--
-					 --><div class="c-carousel__item js-carousel-item-width">
+					 --><div class="c-carousel__item c-carousel__item--demo-padding js-carousel-item-width">
 						<a href="#"><img src="http://placehold.it/200x300" /></a>
 					</div><!--
 				--></div>
@@ -325,6 +325,7 @@
 			'snapPositionsBy': snapBy,
 			'fitNoItemsByContainer': snapBy,
 			'allowLoop': true,
+			'carouselDebug':true
 		});
 	}
 
@@ -343,6 +344,10 @@
 			display: inline-block;
 		}
 		@media screen and (max-width: 1023px) {
+		}
+
+		.c-carousel__item--demo-padding {
+			padding: 10px 30px;
 		}
 	</style>
 </body>

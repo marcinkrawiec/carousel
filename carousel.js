@@ -716,8 +716,6 @@ https://github.com/marcinkrawiec/carousel
             var $itemsSpecial = that.$container.find( that.options.selectorWidthSpecialContainer );
             $itemsSpecial.width('');
 
-            var innerW = $items.eq(0).width();
-            var outerW = $items.eq(0).outerWidth();
             // if(innerW != outerW) {
                 // parentWidth += innerW - outerW;
             // }
@@ -726,7 +724,21 @@ https://github.com/marcinkrawiec/carousel
             // console.log(that.options.fitNoItemsByContainer);
             // console.log(parentWidth / that.options.fitNoItemsByContainer);
             this.debug('calculated item width:');
-            $items.width(that.itemWidth);
+            // if( innerW != outerW ) {
+            // if (that.options.snapPositionsBy) {
+            //     $items.width(that.itemWidth);
+            //     var innerW = $items.eq(0).width();
+            //     var outerW = $items.eq(0).outerWidth();
+                console.log('-----------------------------');
+                console.log(parentWidth);
+                console.log(that.itemWidth);
+            //     console.log(outerW);
+            //     console.log(innerW);
+            //     that.itemWidth += - outerW + innerW;
+            //     console.log(that.itemWidth);
+            //     console.log('-------------------||----------');
+            // }
+            $items.css('width', that.itemWidth + 'px');
 
 //          console.log('itemsSpecial:');
 //          console.log($itemsSpecial);
@@ -737,7 +749,7 @@ https://github.com/marcinkrawiec/carousel
 //          console.log($itemsSpecial.data('special-width'));
 
             $itemsSpecial.each( function() {
-                $(this).width(parentWidth * $(this).find('>*').size());
+                $(this).outerWidth(parentWidth * $(this).find('>*').size());
             });
         };
 
@@ -808,7 +820,7 @@ https://github.com/marcinkrawiec/carousel
                 // that.debug(innerWidth);
             });
             that.debug(totalImageWidth);
-            that.$content.width(totalImageWidth);
+            that.$content.outerWidth(totalImageWidth);
 
             that.itemsMaxLeftPosition = that.$content.width() - (that.$items.eq(0).width() * that.options.fitNoItemsByContainer);
             that.debug('calc max left:');

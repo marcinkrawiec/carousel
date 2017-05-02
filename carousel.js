@@ -183,6 +183,7 @@ https://github.com/marcinkrawiec/carousel
 
         this.generateNavItems = function() {
             if (that.options.generateNavItems) {
+                var totalPages = Math.ceil(this.$items.size() / this.options.snapPositionsBy);
 
                 that.$navItemsContainer.each( function() {
                     var $navItems = $(this).find(that.options.selectorNavItems);
@@ -193,16 +194,14 @@ https://github.com/marcinkrawiec/carousel
                         return true;
                     }
 
-                    if(that.$items.size() != $navItems.size()) {
-
-
-                        if(that.$items.size() > nbSize) {
-                            for(var i = that.$items.size() - nbSize; i > 0; i--) {
+                    if(totalPages != $navItems.size()) {
+                        if(totalPages > nbSize) {
+                            for(var i = totalPages - nbSize; i > 0; i--) {
                                 var $clone = $navItems.eq(nbSize - 1).clone();
                                 $navItems.eq(nbSize - 1).after($clone);
                             }
                         } else {
-                            for(var i = nbSize; i > that.$items.size(); i--) {
+                            for(var i = nbSize; i > totalPages; i--) {
                                 $navItems.eq(i-1).remove();
                             }
                         }

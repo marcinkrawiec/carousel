@@ -204,6 +204,41 @@
 		</div>
 	</section>
 
+	<h3>Snap by example with breakpoints</h3>
+	<section class="js-carousel--snap-by" data-carousel-autointerval="6">
+		<div class="c-carousel">
+			<div class="c-carousel__container js-carousel-container">
+				<div class="c-carousel__content"><!--
+					 --><div class="c-carousel__item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/200x300" /></a>
+					</div><!--
+					 --><div class="c-carousel__item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/200x300" /></a>
+					</div><!--
+					 --><div class="c-carousel__item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/200x300" /></a>
+					</div><!--
+					 --><div class="c-carousel__item js-carousel-item-width">
+						<a href="#"><img src="http://placehold.it/200x300" /></a>
+					</div><!--
+				--></div>
+			</div>
+		</div>
+		<div class="container container--relative">
+			<button class="c-carousel__nav-item-left" aria-hidden="true">
+				<i class="icon-carousel-prev"></i> prev
+			</button>
+			<button class="c-carousel__nav-item-right"  aria-hidden="true">
+				next <i class="icon-carousel-next"></i>
+			</button>
+			<div class="c-carousel__nav">
+				<ul class="nav">
+					<li class="c-carousel__nav-item"><button class="btn-reset"><i class="icon-carousel-nav c-carousel__nav-icon--off">[ ]</i><i class="icon-carousel-nav-active c-carousel__nav-icon--on">[o]</i></button></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
 	<script>
 	$('.js-carousel--home').mkCarousel({
 		'moveToCenter': false,
@@ -268,10 +303,37 @@
 			'allowLoop': true,
 		});
 	}
-
 	specialContainerDemo();
 
-	$(window).on('resize', $.throttle(250, function() { specialContainerDemo(); }) );
+
+	function snapByDemo() {
+		var containerName = '.js-carousel--snap-by';
+		var snapBy = 3;
+		if ($('body').width() < 768) {
+			var snapBy = 1;
+		} else if($('body').width() < 1100) {
+			var snapBy = 2;
+		}
+		$(containerName).mkCarousel('destroy');
+		$(containerName).mkCarousel({
+			'moveToCenter': false,
+			'calculateImgDimensions' : false,
+			'calculateItemDimensions' : true,
+			'calculateContainerOffset': true,
+			'carouselNamespace' : 'carousel-snap-by',
+			'generateNavItems': true,
+			'snapPositionsBy': snapBy,
+			'fitNoItemsByContainer': snapBy,
+			'allowLoop': true,
+		});
+	}
+
+	snapByDemo();
+
+	$(window).on('resize', $.throttle(250, function() { 
+		specialContainerDemo(); 
+		snapByDemo(); 
+	}) );
 	</script>	
 	<style>
 		.js-carousel--home-3 .c-carousel__item {

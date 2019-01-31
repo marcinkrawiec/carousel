@@ -1,7 +1,7 @@
 
 // Hammer.defaults.behavior.touchAction = 'pan-y';
 
-$.browser = {};
+jQuery.browser = {};
 
 /*
 

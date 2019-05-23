@@ -76,6 +76,10 @@
 			</div>
 		</div>
 	</section>
+	<p>
+		Recalculate carousel: <button class="js-recalculate">Recalculate</button>
+	</p>
+	<hr />
 	<section class="js-carousel--home-2" data-carousel-autointerval="6">
 		<div class="c-carousel">
 			<div class="c-carousel__container js-carousel-container">
@@ -386,24 +390,31 @@
 		var specialContainerName = '.js-carousel-special-container';
 		var selectorItem = '__item';
 		var selectorWidthItem = '.js-carousel-item-width';
+		var lastVersion = $('.js-carousel--home-3').data('lastVersion');
+		var currentVersion = 'desk';
 		if ($('body').width() < 1024) {
+			currentVersion = 'palm';
 			specialContainerName = '.js-carousel-special-container-palm';
 			selectorItem = '__item--palm';
 			selectorWidthItem = '.js-carousel-item-width-palm';
 		}
-		$('.js-carousel--home-3').mkCarousel('destroy');
-		$('.js-carousel--home-3').mkCarousel({
-			'moveToCenter': false,
-			'calculateImgDimensions' : false,
-			'calculateItemDimensions' : true,
-			'calculateContainerOffset': false,
-			'carouselNamespace' : 'carousel-home-3',
-			'generateNavItems': true,
-			'selectorItem':selectorItem,
-			'selectorWidthItem': selectorWidthItem,
-			'selectorWidthSpecialContainer': specialContainerName,
-			'allowLoop': true,
-		});
+
+		if (currentVersion != lastVersion) {			
+			$('.js-carousel--home-3').mkCarousel('destroy');
+			$('.js-carousel--home-3').mkCarousel({
+				'moveToCenter': false,
+				'calculateImgDimensions' : false,
+				'calculateItemDimensions' : true,
+				'calculateContainerOffset': false,
+				'carouselNamespace' : 'carousel-home-3',
+				'generateNavItems': true,
+				'selectorItem':selectorItem,
+				'selectorWidthItem': selectorWidthItem,
+				'selectorWidthSpecialContainer': specialContainerName,
+				'allowLoop': true,
+			});
+			$('.js-carousel--home-3').data('lastVersion', currentVersion);
+		}
 	}
 	specialContainerDemo();
 
@@ -411,24 +422,31 @@
 	function snapByDemo() {
 		var containerName = '.js-carousel--snap-by';
 		var snapBy = 3;
+		var prevSnapBy = $(containerName).data('snapBy');
+
+		$(containerName).css('outline','1px dotted red');
+
 		if ($('body').width() < 768) {
-			var snapBy = 1;
+			snapBy = 1;
 		} else if($('body').width() < 1100) {
-			var snapBy = 2;
+			snapBy = 2;
 		}
-		$(containerName).mkCarousel('destroy');
-		$(containerName).mkCarousel({
-			'moveToCenter': false,
-			'calculateImgDimensions' : true,
-			'calculateItemDimensions' : true,
-			'calculateContainerOffset': true,
-			'carouselNamespace' : 'carousel-snap-by',
-			'generateNavItems': true,
-			'snapPositionsBy': snapBy,
-			'fitNoItemsByContainer': snapBy,
-			'allowLoop': true,
-			'carouselDebug':true
-		});
+		if (prevSnapBy != snapBy) {			
+			$(containerName).mkCarousel('destroy');
+			$(containerName).mkCarousel({
+				'moveToCenter': false,
+				'calculateImgDimensions' : true,
+				'calculateItemDimensions' : true,
+				'calculateContainerOffset': true,
+				'carouselNamespace' : 'carousel-snap-by',
+				'generateNavItems': true,
+				'snapPositionsBy': snapBy,
+				'fitNoItemsByContainer': snapBy,
+				'allowLoop': true,
+				'carouselDebug':true
+			});
+			$(containerName).data('snapBy', snapBy);
+		}
 	}
 
 	snapByDemo();
@@ -437,6 +455,13 @@
 		specialContainerDemo(); 
 		snapByDemo(); 
 	}) );
+
+	$('.js-recalculate').on('click', function() {
+		$('.js-carousel--home').trigger('carouselRecalculate');
+	});
+	$('.js-carousel--home').on('carouselRecalculated', function() {
+		console.log('Carousel recalculated!');
+	});
 	</script>	
 	<style>
 		.js-carousel--home-3 .c-carousel__item {

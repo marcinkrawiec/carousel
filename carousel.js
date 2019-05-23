@@ -172,14 +172,6 @@ https://github.com/marcinkrawiec/carousel
             this.calculateDimensions();
             this.bindEvents();
             this.assignNavCheck();
-            $(window).on('resize.'+that.options.carouselNamespace, $.throttle( 2500, function() {
-                 setTimeout( function() {
-                // that.debug('load resize orientationchange');
-                    if(that.initialized) {
-                        that.calculateDimensions();
-                    }
-                }, 200);
-            }));
         };
 
         this.generateNavItems = function() {
@@ -226,6 +218,23 @@ https://github.com/marcinkrawiec/carousel
                 // prevent_default: false
                 touchAction: 'pan-y'
             };
+
+            $(window).off(that.options.carouselNamespace).on('resize.'+that.options.carouselNamespace, $.throttle( 2500, function() {
+                 setTimeout( function() {
+                // that.debug('load resize orientationchange');
+                    if(that.initialized) {
+                        that.calculateDimensions();
+                    }
+                }, 200);
+            }));
+            that.$container.on('carouselRecalculate.'+that.options.carouselNamespace, $.throttle( 50, function() {
+                 setTimeout( function() {
+                // that.debug('load resize orientationchange');
+                    if(that.initialized) {
+                        that.calculateDimensions();
+                    }
+                }, 200);
+            }));            
 
             if (that.options.onPositionChanged !== false) {                
                 that.$container.on('carouselPositionChanged.'+that.options.carouselNamespace, function(ev) {
@@ -773,6 +782,7 @@ https://github.com/marcinkrawiec/carousel
         this.calculateDimensions = function() {
             that.debug('calculateDimensions');
             var totalImageWidth = 0;
+            var oldPosition = that.currentPosition;
 
             // reset previous
             this.debug('items:');
@@ -835,6 +845,8 @@ https://github.com/marcinkrawiec/carousel
             that.currentPosition = 0;
             if(that.options.moveToCenter) {
                 that.currentPosition = Math.floor(that.$items.size()/2);
+            } else {
+                that.currentPosition = oldPosition;
             }
 
             // setTimeout(function() {
@@ -853,6 +865,7 @@ https://github.com/marcinkrawiec/carousel
             }, 1000);
 
             that.debug('calculateDimensions: end');
+            this.triggerEvent('carouselRecalculated');
             // console.log((  ));
         };
 

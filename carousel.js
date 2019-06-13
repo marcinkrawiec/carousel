@@ -216,7 +216,8 @@ https://github.com/marcinkrawiec/carousel
                 // panLockToAxis: true,
                 // panBlockHorizontal: true,
                 // prevent_default: false
-                touchAction: 'pan-y'
+                touchAction: 'pan-y',
+                inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput
             };
 
             $(window).off(that.options.carouselNamespace).on('resize.'+that.options.carouselNamespace, $.throttle( 2500, function() {
